@@ -101,7 +101,7 @@ func main() {
 		maxRedirects = flag.Int("max-redirects", 5, "Max redirect hops saat follow")
 
 		includeStatus  = flag.String("s", "", "Include status (ex: 200,301-399,401) - kalau kosong, include semua lolos filter lain")
-		excludeStatus  = flag.String("es", "404,403", "Exclude status")
+		excludeStatus  = flag.String("es", "404", "Exclude status")
 		excludeSizes   = flag.String("exclude-size", "", "Exclude response size (ex: 0,1234,1kb-10kb)")
 		excludeText    = flag.String("exclude-text", "", "Drop response yang body-nya contain string ini (multi: pisah dengan ';;')")
 		excludeRegex   = flag.String("exclude-regex", "", "Drop response yang body match regex ini")
