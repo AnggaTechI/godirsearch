@@ -45,7 +45,6 @@ Built for people who want a scanner that feels clean, fast, and practical withou
 ```bash
 .
 ├── cmd/
-│   ├── a.txt
 │   └── main.go
 ├── internal/
 │   ├── filter/
@@ -62,7 +61,6 @@ Built for people who want a scanner that feels clean, fast, and practical withou
 │       └── wordlist.go
 ├── wordlists/
 │   └── common.txt
-├── common.txt
 └── go.mod
 ```
 
