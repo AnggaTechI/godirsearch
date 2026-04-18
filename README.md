@@ -1,47 +1,46 @@
-# 🚀 godirsearch
+# <div align="center">⚡ godirsearch ⚡</div>
 
-<p align="center">
-  <b>Concurrent web path scanner written in Go</b><br>
-  wildcard-aware • adaptive • recursive • multi-output
-</p>
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Go-Scanner-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
-  <img src="https://img.shields.io/badge/Status-Active-2ea043?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Version-0.2.0-1f6feb?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Output-Plain%20%7C%20JSONL%20%7C%20CSV%20%7C%20HTML%20%7C%20Markdown-8250df?style=for-the-badge" />
-</p>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=00C2FF&center=true&vCenter=true&width=900&lines=Concurrent+Web+Path+Scanner;Wildcard-Aware+%E2%80%A2+Adaptive+%E2%80%A2+Recursive;Fast%2C+Clean%2C+Flexible+for+Real-World+Workflows)](https://github.com/AnggaTechI)
 
----
+<img src="https://img.shields.io/badge/Go-1.20%2B-00ADD8?style=for-the-badge&logo=go&logoColor=white" />
+<img src="https://img.shields.io/badge/Status-Active-2ea043?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Version-0.2.0-1f6feb?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Platform-Linux%20%7C%20Windows-8250df?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Output-Plain%20%7C%20JSONL%20%7C%20CSV%20%7C%20HTML%20%7C%20Markdown-f39c12?style=for-the-badge" />
 
-## 📌 Overview
-
-**godirsearch** is a fast and flexible Go-based web path scanner built for authorized reconnaissance and endpoint discovery.
-It supports **single targets, target lists, and CIDR ranges**, while also providing **wildcard detection, adaptive rate limiting, recursive scanning, proxy support, custom headers, rotating user-agents, and multiple report formats**.
-
-Built to stay lightweight, clean, and practical for real-world scanning workflows.
+</div>
 
 ---
 
-## ✨ Features
+## <div align="center">🛰️ Overview</div>
 
-- ⚡ **Concurrent scanning** with configurable threads
-- 🎯 **Multiple target modes**: single URL, file list, or CIDR range
-- 🧠 **Wildcard-aware detection** to reduce false positives
-- 🔁 **Recursive scan mode** with configurable depth
-- 🛡️ **Adaptive rate limiter** that reacts to `429` and `503`
-- 🌐 **HTTP/2 support** and optional TLS verification
-- 🍪 **Custom headers, cookies, body, and method support**
-- 🕵️ **User-Agent rotation** with file-based pools
-- 🔌 **Single proxy or rotating proxy list**
-- 🧩 **Wordlist expansion** with extensions, prefixes, suffixes, blacklist, and backup patterns
-- 📊 **Filtering system** for status, size, body content, regex, and redirect targets
-- 📝 **Export results** to plain text, JSONL, CSV, HTML, or Markdown
-- ⏱️ **Graceful shutdown** with progress stats
+**godirsearch** is a fast and modern **Go-based web path scanner** designed for efficient endpoint discovery on authorized targets.
+It combines **concurrency, wildcard detection, adaptive rate control, recursive scanning, flexible filtering, proxy support, and multi-format reporting** in a lightweight CLI.
+
+Built for people who want a scanner that feels clean, fast, and practical without becoming bloated.
 
 ---
 
-## 🧱 Project Structure
+## <div align="center">🔥 Highlights</div>
+
+- ⚡ High-speed **concurrent scanning**
+- 🎯 Supports **single target**, **target list**, and **CIDR range**
+- 🧠 **Wildcard-aware detection** to reduce noisy false positives
+- 🔁 **Recursive mode** with configurable depth and trigger statuses
+- 🛡️ **Adaptive limiter** that reacts to `429` and `503`
+- 🌐 **HTTP/2**, **custom headers**, **cookies**, **request body**, and **custom methods**
+- 🕵️ **Rotating User-Agent** support
+- 🔌 **Proxy** and **proxy-list rotation** support
+- 🧩 Smart **wordlist expansion** with extensions, prefixes, suffixes, blacklist, and backup patterns
+- 📊 Fine-grained **filtering system** for status, size, redirect, and body matching
+- 📝 Export to **plain text**, **JSONL**, **CSV**, **HTML**, and **Markdown**
+- ⏱️ Built-in **progress stats** and **graceful shutdown**
+
+---
+
+## <div align="center">🗂️ Project Structure</div>
 
 ```bash
 .
@@ -69,22 +68,55 @@ Built to stay lightweight, clean, and practical for real-world scanning workflow
 
 ---
 
-## ⚙️ Installation
+## <div align="center">🧠 Scan Flow</div>
 
-### Clone repository
+```mermaid
+flowchart TD
+    A[Start] --> B[Load targets]
+    B --> C[Load and expand wordlist]
+    C --> D[Run wildcard probes]
+    D --> E[Create workers]
+    E --> F[Send HTTP requests]
+    F --> G[Read body sample]
+    G --> H[Apply filters]
+    H --> I{Match?}
+    I -- Yes --> J[Write result to output]
+    I -- No --> K[Drop result]
+    J --> L{Recursive mode?}
+    L -- Yes --> M[Queue discovered paths]
+    L -- No --> N[Continue]
+    K --> N
+    M --> N
+    N --> O[Progress + stats]
+    O --> P[Finish]
+```
+
+---
+
+## <div align="center">⚙️ Installation</div>
+
+### Clone Repository
 
 ```bash
 git clone https://github.com/AnggaTechI/godirsearch.git
 cd godirsearch
 ```
 
-### Build binary
+### Requirements
+
+- Go **1.20+** recommended
+
+---
+
+## <div align="center">🛠️ Build Guide</div>
+
+### Build on Linux / macOS
 
 ```bash
 go build -o godirsearch ./cmd
 ```
 
-### Run version check
+Run:
 
 ```bash
 ./godirsearch --version
@@ -92,27 +124,71 @@ go build -o godirsearch ./cmd
 
 ---
 
-## ▶️ Basic Usage
+### Build on Windows (CMD)
 
-### Scan a single target
+```bat
+go build -o godirsearch.exe ./cmd
+```
+
+Run:
+
+```bat
+godirsearch.exe --version
+```
+
+---
+
+### Build on Windows (PowerShell)
+
+```powershell
+go build -o godirsearch.exe ./cmd
+```
+
+Run:
+
+```powershell
+.\godirsearch.exe --version
+```
+
+---
+
+### Optional stripped build
+
+#### Linux / macOS
+
+```bash
+go build -ldflags="-s -w" -o godirsearch ./cmd
+```
+
+#### Windows
+
+```bat
+go build -ldflags="-s -w" -o godirsearch.exe ./cmd
+```
+
+---
+
+## <div align="center">🚀 Usage</div>
+
+### Single target
 
 ```bash
 ./godirsearch -u https://example.com -w wordlists/common.txt
 ```
 
-### Scan with extensions
+### With extensions
 
 ```bash
 ./godirsearch -u https://example.com -w wordlists/common.txt -e php,html,js -f
 ```
 
-### Scan target list
+### Target list
 
 ```bash
 ./godirsearch -l targets.txt -w wordlists/common.txt -t 50
 ```
 
-### Scan CIDR range
+### CIDR scan
 
 ```bash
 ./godirsearch --cidr 10.0.0.0/24 --scheme https -w wordlists/common.txt
@@ -124,7 +200,7 @@ go build -o godirsearch ./cmd
 ./godirsearch -u https://example.com -w wordlists/common.txt -R --max-depth 3
 ```
 
-### Save reports in multiple formats
+### Multi-output scan
 
 ```bash
 ./godirsearch -u https://example.com -w wordlists/common.txt \
@@ -133,7 +209,7 @@ go build -o godirsearch ./cmd
 
 ---
 
-## 🧪 Example Commands
+## <div align="center">🧪 Advanced Examples</div>
 
 ### Custom headers and cookies
 
@@ -150,7 +226,7 @@ go build -o godirsearch ./cmd
   --method POST -d '{"ping":"1"}'
 ```
 
-### Proxy rotation
+### Proxy list rotation
 
 ```bash
 ./godirsearch -u https://example.com -w wordlists/common.txt --proxy-list proxies.txt
@@ -176,77 +252,64 @@ go build -o godirsearch ./cmd
 
 ---
 
-## 🎛️ Useful Flags
+## <div align="center">🎛️ Useful Flags</div>
 
 | Flag | Description |
 |------|-------------|
 | `-u` | Single target URL |
 | `-l` | File containing target URLs |
-| `--cidr` | CIDR range input |
+| `--cidr` | CIDR range target input |
 | `--scheme` | Default scheme for targets without scheme |
-| `-w` | Wordlist file(s), comma-separated |
-| `-e` | File extensions |
-| `-f` | Force extensions on all entries |
+| `-w` | Wordlist file(s) |
+| `-e` | Extensions |
+| `-f` | Force extension expansion |
 | `-O` | Overwrite existing extension |
-| `--prefixes` | Prefix for each entry |
-| `--suffixes` | Suffix for each entry |
-| `--backup-patterns` | Generate backup-style filenames |
+| `--prefixes` | Prefix each entry |
+| `--suffixes` | Suffix each entry |
+| `--backup-patterns` | Generate backup-like variants |
 | `-t` | Concurrent threads |
-| `--timeout` | Request timeout in seconds |
+| `--timeout` | Request timeout |
 | `--max-rate` | Max requests per second |
 | `--delay` | Delay between requests |
 | `--retries` | Retry count |
-| `--max-time` | Max runtime |
+| `--max-time` | Max total runtime |
 | `--method` | HTTP method |
-| `--ua` | Custom user-agent |
-| `--random-agents` | Rotate user-agents |
-| `--agents-file` | File containing user-agent pool |
+| `--ua` | Custom User-Agent |
+| `--random-agents` | Rotate User-Agents |
+| `--agents-file` | File-based User-Agent pool |
 | `-H` | Custom headers |
 | `-c` | Cookie header |
 | `-d` | Request body |
 | `-r` | Follow redirects |
-| `-s` | Include status codes |
-| `--es` | Exclude status codes |
-| `--exclude-size` | Exclude by response size |
-| `--exclude-text` | Exclude body containing text |
-| `--exclude-regex` | Exclude body matching regex |
-| `--exclude-redirect` | Exclude redirect target by regex |
-| `--skip-on-status` | Abort scan on certain status |
-| `-R` | Enable recursive scan |
+| `-s` | Include status |
+| `--es` | Exclude status |
+| `--exclude-size` | Exclude response sizes |
+| `--exclude-text` | Exclude body text |
+| `--exclude-regex` | Exclude body regex |
+| `--exclude-redirect` | Exclude redirect regex |
+| `--skip-on-status` | Abort on specific status |
+| `-R` | Enable recursion |
 | `--max-depth` | Maximum recursion depth |
 | `--recursion-status` | Status codes that trigger recursion |
 | `--force-recursive` | Recurse on all findings |
-| `--subdirs` | Start scanning from subdirectories |
+| `--subdirs` | Scan inside subdirectories |
 | `-o` | Plain text output |
 | `-oj` | JSONL output |
 | `-oc` | CSV output |
 | `-oh` | HTML report |
 | `-om` | Markdown output |
 | `--proxy` | Single proxy |
-| `--proxy-list` | Rotating proxy list |
+| `--proxy-list` | Proxy list |
 | `--http2` | Enable HTTP/2 |
-| `--tls-verify` | Verify TLS certificate |
+| `--tls-verify` | Verify TLS certificates |
 | `-q` | Quiet mode |
 | `--version` | Print version |
 
 ---
 
-## 🧠 How It Works
+## <div align="center">📤 Output Formats</div>
 
-`godirsearch` loads one or more wordlists, expands entries using the selected options, then distributes generated paths across concurrent workers.
-Each worker sends requests using the configured HTTP settings, applies filters, and writes valid results into one or more output writers.
-
-Before scanning starts, the tool can run **wildcard probes** using random paths to fingerprint generic target responses.
-This helps reduce noisy matches using **body hashing** and **status-size fingerprints**.
-
-When the server starts rate-limiting with `429` or `503`, the adaptive limiter reduces request speed automatically.
-When recursion is enabled, newly discovered directory-like endpoints can be fed back into the queue until the depth limit is reached.
-
----
-
-## 📤 Output Formats
-
-Supported outputs:
+`godirsearch` can write results into:
 
 - **Plain text**
 - **JSONL**
@@ -262,7 +325,7 @@ Example:
 
 ---
 
-## 🖥️ Sample Output
+## <div align="center">🖥️ Sample Output</div>
 
 ```bash
 [200] 512      https://example.com/admin
@@ -272,22 +335,38 @@ Example:
 
 ---
 
-## 📋 Notes
+## <div align="center">📌 Internal Logic Summary</div>
 
-- Use this tool only on systems you own or are explicitly authorized to assess.
-- Default rate limiting is intentionally conservative.
-- TLS verification is optional, useful for self-signed targets.
+- `cmd/main.go` handles flags, banner, progress output, and runtime flow
+- `internal/wordlist` loads and expands wordlists
+- `internal/filter` parses filters and decides whether results are reported or dropped
+- `internal/scanner` handles workers, requests, recursion, wildcard probing, and adaptive rate limiting
+- `internal/output` writes results into multiple formats
+
+---
+
+## <div align="center">⚠️ Notes</div>
+
+- Use only on systems you own or are explicitly authorized to assess.
+- Default behavior is designed to stay practical and reasonably controlled.
+- TLS verification is optional for compatibility with self-signed targets.
 - Wildcard detection can be tuned or disabled with `--wildcard-probes`.
 
 ---
 
-## 👤 Author
+## <div align="center">👤 Author</div>
+
+<div align="center">
 
 **AnggaTechI**  
-GitHub: https://github.com/AnggaTechI
+GitHub: [github.com/AnggaTechI](https://github.com/AnggaTechI)
+
+</div>
 
 ---
 
-## ⭐ Support
+## <div align="center">⭐ Support</div>
 
-If this project helps you, consider giving it a star on GitHub.
+<div align="center">
+If this project helps you, drop a star on the repository and keep building cool things.
+</div>
