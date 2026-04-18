@@ -328,7 +328,6 @@ Example:
 ```bash
 [200] 512      https://example.com/admin
 [301] 0        https://example.com/login -> https://example.com/login/
-[403] 128      https://example.com/private
 ```
 
 ---
