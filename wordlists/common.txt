@@ -1,3 +1,5 @@
+# you can find another wordlist in 
+# https://github.com/danielmiessler/SecLists/tree/master/Discovery/Web-Content
 cgi-bin
 images
 admin
